@@ -1,0 +1,81 @@
+{
+   "checksum": "355cc696540b69b8454f262a16955673",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13430945039970558",
+            "date_last_used": "0",
+            "guid": "958a3bda-f242-4a1c-96df-b6efe85de53e",
+            "id": "8",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Cursos online - aprenda o que quiser, quando quiser | Udemy",
+            "type": "url",
+            "url": "https://www.udemy.com/personal/home/?afsrc=1&gad_source=1&im_ref=wnj1-hRnrxyZWid2yBX3uSyBUkr01FyOZyrZWw0&irgwc=1&irpid=4290113&utm_audience=mx&utm_campaign=4290113&utm_content=3193860&utm_medium=affiliate&utm_source=impact&utm_tactic=%22Content%22%2C%22UK%22"
+         }, {
+            "date_added": "13430858320134793",
+            "date_last_used": "0",
+            "guid": "59a55cb8-a2a3-4275-87c4-1a0d5dbac3be",
+            "id": "9",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "ChatGPT",
+            "type": "url",
+            "url": "https://chatgpt.com/?utm_source=google&utm_medium=paid_search&c_id=21990631164&c_agid=176757374629&c_crid=742246226099&c_kwid=kwd-368538592&c_ims=&c_pms=9209245&c_nw=g&c_dvc=c&gad_source=1&gad_campaignid=21990631164&gbraid=0AAAAA-I0E5fcDn0lTPSWHyAEZRiS8cmwL&gclid=Cj0KCQjw7eXTBhDBARIsAKF-w4780btGbfrXqlI49WYQFsgnZUIFXv4-fVCJCz_LGnBC8MePY3_V8lUaArTyEALw_wcB"
+         }, {
+            "date_added": "13432309364420428",
+            "date_last_used": "0",
+            "guid": "d56cc44d-5a4c-4026-a0ec-013f5461edba",
+            "id": "10",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Gerador de Artes",
+            "type": "url",
+            "url": "http://212.85.11.56:3001/"
+         }, {
+            "date_added": "13432394543554998",
+            "date_last_used": "0",
+            "guid": "6225a405-b78a-47d6-a236-2014607d374c",
+            "id": "11",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "SharePoint | Descubra",
+            "type": "url",
+            "url": "https://brgpcorp.sharepoint.com/_layouts/15/sharepoint.aspx/discover/news"
+         } ],
+         "date_added": "13433439296759189",
+         "date_last_used": "0",
+         "date_modified": "13432394543554998",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "5",
+         "name": "Barra de favoritos",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13433439296759189",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "6",
+         "name": "Outros favoritos",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13433439296759189",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "7",
+         "name": "Dispositivos móveis",
+         "type": "folder"
+      }
+   },
+   "sync_metadata": "CuABCr8BCIiBAhK4ASAAkgGjAQqgAQoOY2hyb21lX3N5bmNfYm0SBTUxIWJtGhIJPUpVCQ5bBgARPUpVCQ5bBgAiNAnTk0MJDlsGABADGfb0ICc+SgCKIAEqHDUxIWJtL2ZkOjkxNjM3MjM1NTk0Njg4OTMxNjEiNAnTk0MJDlsGABADGfb0ICc+SgCKIAEqHDUxIWJtL2ZkOjkxNjM3MjM1NTk0Njg4OTMxNjEpk35VCQ5bBgDqAQwIyOaF1QYQkIqF8gESACoYVmgwZWVlTjl0eTQrdU1jeEJqTUhZZz09SAMSwwEIBxK+AQocbmpnRHU4OGVDcnZYcDg2cEQ3ZkhHY3FGcDg4PRJmWjpBRHF0QVp6SklPTzlDTWZOdC9JM2VqbmhyYWJ4SlFkU3AxVmpLVnZscmpMYUk5QnowUUdSbk5jSTJWMFA0N0Rlcm90WVFVYm9Yd0gyYnh4YXFodFVZdEl4QzdKemVzZ3NSdz09GAAgACgAMLDYnfuDjJYDOABAAEoceXpOQjAxY241NEE3Y1JVMHVUKy9QZ21UdFVvPWUAAAAAagAS7gEICxLpAQocVVQrQ0cwV1Y1bXJ1Nm8yMVlXSkNmc2tSOERVPRJmWjpBRHF0QVp5VlpHZGwwQVRKZnZsS2E2R1pPYlVNQTUxNCtVUmpxMjByd0FXV0VKQWsyZ0R6c3VabXpWZXVqbThheUtMejY1a3Q0ZWUzdzgzZ0dZckFXWmsxc0s3SWJFZVJuZz09GAAgACgAMNTp28asw5YDOMiTksOENEDIk5LDhDRKHDk1cVE2QnI1Ty9CMStUcm5wMGxoNXYzTGtNaz1aHyId63FRMG5hTGpMNjlBS2NTWDVqa2NhZ3dXcG1tdz1lDLd+6moAEu4BCAkS6QEKHGlzZmlzZFZGUlhXSGVoNzlBMlVFNm1pUXUrRT0SZlo6QURxdEFaeVZaR2RsMEFUSmZ2bEthNkdaT2JVTVA2UnVlVlI2bll3SGd0ZnJXMjJJSHZ6MjIxNUh5NGN5eFdTTGlRbWY0eGJCTEtLR3NxZ3dYendHclVOTE5yaFlmb2dFY0E9PRgAIAAoADDAhaa17sCWAziMws7m/jNAjMLO5v4zShxEZStrMGYrQ0QrbnY5ZWozL2hSZ3J1bG5LeG89Wh8iHa0xOC9vTWk5OFMvUGxwL2c0M1RRTkJobTUyTUE9ZYal2MhqABLuAQgKEukBChx2YW80RzJiazc0dTlhKzE5bE1sRDNFSlFSN1E9EmZaOkFEcXRBWnlWWkdkbDBBVEpmdmxLYTZHWk9iVU12a2cvTkRIV3hsYXVkL1pTU3VUeTVkd1hYTFhVV3N6Zmd4Yng3NHFtL2hSc1RLcnFkanRpWGJBM1RqWENnYjQzRFpBbmd3PT0YACAAKAAw3/3kpO/AlgM4zZ3DmoQ0QM2dw5qENEocdGpyQUEwY1N5YUY5L2lyQ2duSzRwMHA4VC9VPVofIh3WMFNKOXBBbGliSVcvMmdrYUMrUC9MRFVDSFVFPWUAAAAAagASwwEIBhK+AQocWWNTVG9udkVTUHdxQ3M0TDJjclZodjY4TDk4PRJmWjpBRHF0QVp5NFFwdk9pZldZUE5USHNmV3Y5N1JwQkkydzdIWDVtbnV4MFgzOTBXY05pd2wxbDUyMlRVV1huN0wwSGlGdUw1QTVwN1BmdXpSamZVQmFITmZqaUljVlY2aWZ2dz09GAAgACgAMLDYnfuDjJYDOABAAEocb1BWa2h3QlJiVjY1S0NXUjIrSU9OSFdvT3U4PWUAAAAAagAS7QEICBLoAQocZU1DckhScWlJajdkemsvYzJQaXIwWUVidjRvPRJmWjpBRHF0QVp5VlpHZGwwQVRKZnZsS2E2R1pPYlVNajV3YmZuOTdDSnZXQzR0N21VWmNzVDJUQWtQdkF5SDdaSFR0TDI4TUZwbmlxbXJtWDZGWFE3SnBUdkxGZmhIZzFieU9uQT09GAAgACgAMOumwtyVmZYDOOe8+4//M0DnvPuP/zNKHE90YTdCM0lqdnExVEZuZFNIYWlYSUdwamtoVT1aHiIcWjNNVkd1NG51Umw1Ykwya1BZSG9LY2JPZmlnPWUMoP2DagASqwEIBRKmAQoceXhKLzZmdmtlY3I3a3A1RVF6QjR0V0xwZGJFPRJOWjpBRHF0QVp4NXh6dXdLOU1mUjU3ckhQZEQzdnpaMkY2a3VGeWNQbzU5QnpUQUhPNTlWWjVzNER3THlMMjNWY0RNdjhFd1BDQlRYaTJaGAAgACgAMLDYnfuDjJYDOABAAEocYVJDV0xnaEY5YjVJbnFLSUR2dUovanZRa0ZjPWUAAAAAagAwATgA",
+   "version": 1
+}
