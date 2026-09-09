@@ -3,3 +3,6 @@ chrome-debug
 
 #Ambiente virtual
 venv
+
+#Credenciais n8n
+.env
