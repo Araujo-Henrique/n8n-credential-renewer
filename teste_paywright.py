@@ -51,3 +51,16 @@ with sync_playwright() as p:
 
     except PlaywrightTimeoutError:
         print("Já está logado no n8n.")
+
+    finally:
+        #4. Desconectar as credenciais do google
+            page.get_by_role("link", name="Credentials").click()
+            page.get_by_text("Gmail Henrique", exact=True).click()
+            page.get_by_text("Disconnect", exact=True).click()
+            confirm_button = page.locator("button.btn--confirm")
+            confirm_button.wait_for(state="visible")
+            confirm_button.click()
+
+        #5. Conectar as credenciais do google
+            
+            #browser.close
