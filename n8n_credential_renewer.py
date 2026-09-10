@@ -41,6 +41,10 @@ with sync_playwright() as p:
 
     try:
         context = browser.contexts[0]
+
+        for old_page in context.pages:
+            old_page.close()
+            
         page = context.new_page()
 
         # 1. Acessar n8n
@@ -70,13 +74,13 @@ with sync_playwright() as p:
             print("Já está logado no n8n.")
 
         # 3. Abrir credencial
-        page.get_by_role(
+        '''page.get_by_role(
             "link",
             name="Credentials"
         ).click()
 
         page.get_by_text(
-            "GPlanilhas Henrique",
+            "Gmail Henrique",
             exact=True
         ).click()
 
@@ -143,7 +147,8 @@ with sync_playwright() as p:
             exact=True
         ).click()
 
-        print("Reautenticação concluída.")
+        print("Reautenticação concluída.")'''
 
     finally:
+        page.close()
         browser.close()
