@@ -2,8 +2,12 @@ import subprocess
 import time
 import os
 
-from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import (
+    sync_playwright,
+    TimeoutError as PlaywrightTimeoutError
+)
 from dotenv import load_dotenv
+
 
 load_dotenv(r"C:/Automacao/gazeta_do_pneu/.env")
 
@@ -14,53 +18,132 @@ N8N_URL = os.getenv("N8N_URL")
 N8N_USER = os.getenv("N8N_USER")
 N8N_PASSWORD = os.getenv("N8N_PASSWORD")
 
-#Verificando se as variáveis existem
-if not all([N8N_URL, N8N_USER, N8N_PASSWORD]):
-        raise ValueError("Variáveis obrigatórias não encontradas no .env")
 
-# 1. Abre o Chrome em modo debug
+if not all([N8N_URL, N8N_USER, N8N_PASSWORD]):
+    raise ValueError(
+        "Variáveis obrigatórias não encontradas no .env"
+    )
+
+
 subprocess.Popen([
     CHROME,
     "--remote-debugging-port=9222",
     f"--user-data-dir={PROFILE}"
 ])
 
-# 2. Aguarda Chrome iniciar
 time.sleep(3)
 
-# 3. Playwright conecta
+
 with sync_playwright() as p:
     browser = p.chromium.connect_over_cdp(
         "http://127.0.0.1:9222"
     )
 
-    context = browser.contexts[0]
-
-    page = context.new_page()
-
-    page.goto(N8N_URL)
     try:
-        page.locator("#emailOrLdapLoginId").wait_for(
-            state="visible",
-            timeout=5000
+        context = browser.contexts[0]
+        page = context.new_page()
+
+        # 1. Acessar n8n
+        page.goto(N8N_URL)
+
+        # 2. Fazer login, se necessário
+        try:
+            email = page.locator("#emailOrLdapLoginId")
+
+            email.wait_for(
+                state="visible",
+                timeout=5000
+            )
+
+            email.fill(N8N_USER)
+
+            page.locator("#password").fill(
+                N8N_PASSWORD
+            )
+
+            page.get_by_role(
+                "button",
+                name="Sign in"
+            ).click()
+
+        except PlaywrightTimeoutError:
+            print("Já está logado no n8n.")
+
+        # 3. Abrir credencial
+        page.get_by_role(
+            "link",
+            name="Credentials"
+        ).click()
+
+        page.get_by_text(
+            "GPlanilhas Henrique",
+            exact=True
+        ).click()
+
+        # 4. Disconnect
+        page.get_by_text(
+            "Disconnect",
+            exact=True
+        ).click()
+
+        confirm_button = page.locator(
+            "button.btn--confirm"
         )
 
-        page.locator("#emailOrLdapLoginId").fill(N8N_USER)
-        page.locator("#password").fill(N8N_PASSWORD)
-        page.get_by_role("button", name="Sign in").click()
+        confirm_button.wait_for(
+            state="visible"
+        )
 
-    except PlaywrightTimeoutError:
-        print("Já está logado no n8n.")
+        confirm_button.click()
+
+        # 5. Sign in with Google
+        with page.expect_popup() as popup_info:
+            page.get_by_role(
+                "button",
+                name="Sign in with Google"
+            ).click()
+
+        google_page = popup_info.value
+
+        # 6. Google
+        google_page.get_by_text(
+            "henriquegp",
+            exact=True
+        ).click()
+
+        google_page.get_by_role(
+            "link",
+            name="Avançado"
+        ).click()
+
+        google_page.get_by_role(
+            "link",
+            name="Acessar gpcorpbr.com (não seguro)"
+        ).click()
+
+        # 7. Permissões
+        try:
+            checkbox = google_page.get_by_role(
+                "checkbox",
+                name="Selecionar tudo"
+            )
+
+            checkbox.wait_for(
+                state="visible",
+                timeout=3000
+            )
+
+            checkbox.check()
+
+        except PlaywrightTimeoutError:
+            print("Checkbox não apareceu.")
+
+        google_page.get_by_text(
+            "Continuar",
+            exact=True
+        ).click()
+
+        print("Reautenticação concluída.")
 
     finally:
-        #4. Desconectar as credenciais do google
-            page.get_by_role("link", name="Credentials").click()
-            page.get_by_text("Gmail Henrique", exact=True).click()
-            page.get_by_text("Disconnect", exact=True).click()
-            confirm_button = page.locator("button.btn--confirm")
-            confirm_button.wait_for(state="visible")
-            confirm_button.click()
-
-        #5. Conectar as credenciais do google
-            
-            #browser.close
+        browser.close()
