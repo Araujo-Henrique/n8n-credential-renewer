@@ -18,7 +18,7 @@ N8N_URL = os.getenv("N8N_URL")
 N8N_USER = os.getenv("N8N_USER")
 N8N_PASSWORD = os.getenv("N8N_PASSWORD")
 
-
+# Verifica se as credenciais estão válidas se não o programa encerra aqui
 if not all([N8N_URL, N8N_USER, N8N_PASSWORD]):
     raise ValueError(
         "Variáveis obrigatórias não encontradas no .env"
@@ -41,16 +41,16 @@ with sync_playwright() as p:
 
     try:
         context = browser.contexts[0]
-
+        # Fecha guias antigas caso tenham ficado abertas
         for old_page in context.pages:
             old_page.close()
-            
+
         page = context.new_page()
 
-        # 1. Acessar n8n
+        # Acessar n8n
         page.goto(N8N_URL)
 
-        # 2. Fazer login, se necessário
+        # Fazer login, somente se necessário
         try:
             email = page.locator("#emailOrLdapLoginId")
 
@@ -73,8 +73,8 @@ with sync_playwright() as p:
         except PlaywrightTimeoutError:
             print("Já está logado no n8n.")
 
-        # 3. Abrir credencial
-        '''page.get_by_role(
+        # Abrir aba de credencial
+        page.get_by_role(
             "link",
             name="Credentials"
         ).click()
@@ -84,7 +84,7 @@ with sync_playwright() as p:
             exact=True
         ).click()
 
-        # 4. Disconnect
+        # Desconecta a credencial do google
         page.get_by_text(
             "Disconnect",
             exact=True
@@ -100,7 +100,7 @@ with sync_playwright() as p:
 
         confirm_button.click()
 
-        # 5. Sign in with Google
+        # Conecta novamente a credencial
         with page.expect_popup() as popup_info:
             page.get_by_role(
                 "button",
@@ -109,7 +109,7 @@ with sync_playwright() as p:
 
         google_page = popup_info.value
 
-        # 6. Google
+        # Interação com popup de confirmação
         google_page.get_by_text(
             "henriquegp",
             exact=True
@@ -125,7 +125,7 @@ with sync_playwright() as p:
             name="Acessar gpcorpbr.com (não seguro)"
         ).click()
 
-        # 7. Permissões
+        # Se necessário, ceder permisões de reativação
         try:
             checkbox = google_page.get_by_role(
                 "checkbox",
@@ -147,8 +147,9 @@ with sync_playwright() as p:
             exact=True
         ).click()
 
-        print("Reautenticação concluída.")'''
+        print("Reautenticação concluída.")
 
+    # Fecha as páginas abertas
     finally:
         page.close()
         browser.close()
