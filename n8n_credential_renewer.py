@@ -9,10 +9,14 @@ from playwright.sync_api import (
 from dotenv import load_dotenv
 
 
-load_dotenv(r"C:/Automacao/gazeta_do_pneu/.env")
+load_dotenv()
 
-CHROME = r"C:/Program Files/Google/Chrome/Application/chrome.exe"
-PROFILE = r"C:/Automacao/gazeta_do_pneu/chrome-debug"
+CHROME = os.getenv("CHROME")
+PROFILE = os.getenv("PROFILE")
+
+LOGIN_NAME = os.getenv("LOGIN_NAME")
+DOMINIO = os.getenv("DOMINIO")
+GMAIL_CREDENTIAL_N8N = os.getenv("GMAIL_CREDENTIAL_N8N")
 
 N8N_URL = os.getenv("N8N_URL")
 N8N_USER = os.getenv("N8N_USER")
@@ -80,7 +84,7 @@ with sync_playwright() as p:
         ).click()
 
         page.get_by_text(
-            "Gmail Henrique",
+            GMAIL_CREDENTIAL_N8N,
             exact=True
         ).click()
 
@@ -111,7 +115,7 @@ with sync_playwright() as p:
 
         # Interação com popup de confirmação
         google_page.get_by_text(
-            "henriquegp",
+            LOGIN_NAME,
             exact=True
         ).click()
 
@@ -122,7 +126,7 @@ with sync_playwright() as p:
 
         google_page.get_by_role(
             "link",
-            name="Acessar gpcorpbr.com (não seguro)"
+            name=DOMINIO
         ).click()
 
         # Se necessário, ceder permisões de reativação
