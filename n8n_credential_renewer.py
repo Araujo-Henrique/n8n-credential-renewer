@@ -1,6 +1,10 @@
 import subprocess
 import time
 import os
+import logging
+import traceback
+
+from notifier import send_status_message
 
 from playwright.sync_api import (
     sync_playwright,
@@ -11,19 +15,31 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("n8n_credential_renewer.log", encoding="utf-8"),
+        logging.StreamHandler(),
+    ],
+)
+logger = logging.getLogger(__name__)
+
 CHROME = os.getenv("CHROME")
 PROFILE = os.getenv("PROFILE")
 
 LOGIN_NAME = os.getenv("LOGIN_NAME")
 DOMINIO = os.getenv("DOMINIO")
 GMAIL_CREDENTIAL_N8N = os.getenv("GMAIL_CREDENTIAL_N8N")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 N8N_URL = os.getenv("N8N_URL")
 N8N_USER = os.getenv("N8N_USER")
 N8N_PASSWORD = os.getenv("N8N_PASSWORD")
 
 # Verifica se as credenciais estão válidas se não o programa encerra aqui
-if not all([N8N_URL, N8N_USER, N8N_PASSWORD]):
+if not all([N8N_URL, N8N_USER, N8N_PASSWORD, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID]):
     raise ValueError(
         "Variáveis obrigatórias não encontradas no .env"
     )
@@ -32,11 +48,15 @@ if not all([N8N_URL, N8N_USER, N8N_PASSWORD]):
 subprocess.Popen([
     CHROME,
     "--remote-debugging-port=9222",
+    #"headless=new",
     f"--user-data-dir={PROFILE}"
 ])
 
 time.sleep(3)
 
+
+status_ok = False
+error_detail = ""
 
 with sync_playwright() as p:
     browser = p.chromium.connect_over_cdp(
@@ -75,7 +95,7 @@ with sync_playwright() as p:
             ).click()
 
         except PlaywrightTimeoutError:
-            print("Já está logado no n8n.")
+            logger.info("Já está logado no n8n.")
 
         # Abrir aba de credencial
         page.get_by_role(
@@ -144,16 +164,30 @@ with sync_playwright() as p:
             checkbox.check()
 
         except PlaywrightTimeoutError:
-            print("Checkbox não apareceu.")
+            logger.info("Checkbox não apareceu.")
 
         google_page.get_by_text(
             "Continuar",
             exact=True
         ).click()
 
-        print("Reautenticação concluída.")
+        logger.info("Reautenticação concluída.")
+
+    except Exception:
+        error_detail = traceback.format_exc()
+        logger.error("Falha no fluxo de reautenticação:\n%s", error_detail)
+
+    else:
+        status_ok = True
 
     # Fecha as páginas abertas
     finally:
         page.close()
         browser.close()
+
+send_status_message(
+    success=status_ok,
+    detail="Reautenticação concluída com sucesso." if status_ok else error_detail,
+    bot_token=TELEGRAM_BOT_TOKEN,
+    chat_id=TELEGRAM_CHAT_ID,
+)
