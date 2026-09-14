@@ -40,5 +40,5 @@ E no Python você conecta com:
 browser = p.chromium.connect_over_cdp("http://127.0.0.1:9222")
 ```
 
-## Pendente: observabilidade no projeto
-Com os passos acima a aplicação já pode ser executada seja manualmente ou através de um agendador de tarefas, porém será ainda implementado formas do código enviar um e-mail para reportar cada estado e evitar falhas silenciosas e falso positivo.
+## Observabilidade no projeto
+Com os passos acima a aplicação já pode ser executada seja manualmente ou através de um agendador de tarefas, porém como o processo é para funcionar de forma automática adicionei uma forma de relatar automaticamente o resultado final do programa através dos logs. Através do Telegram integrei o código para reportar ao final de cada disparo o que ocorreu no processo e se foi possível renovar as credenciais ou não.
