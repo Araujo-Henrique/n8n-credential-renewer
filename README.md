@@ -41,4 +41,5 @@ browser = p.chromium.connect_over_cdp("http://127.0.0.1:9222")
 ```
 
 ## Registro de execução (observabilidade)
+
 Ao final de cada execução o programa dispara um log de aviso para reportar se o programa rodou por completo, quebrou no meio do caminho ou se encontrou alguma barreira que resultou em erro. Ese disparo é feito com a integração com o bot do telegram. Não é um passo orbigatório para o projeto, mas permite que o processo possa ser acompanhado tendo em vista que o programa é para rodar com headless True e agendador de tarefas.
