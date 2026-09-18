@@ -40,10 +40,5 @@ E no Python você conecta com:
 browser = p.chromium.connect_over_cdp("http://127.0.0.1:9222")
 ```
 
-<<<<<<< HEAD
 ## Registro de execução (observabilidade)
-Ao final de cada execução o programa dispara um log de aviso para reportar se o programa rodou por completo, quebrou no meio do caminho ou se encontrou alguma barreira que resultou em erro. Ese disparo é feito com a integração com o bot do telegram. Não é um passo orbigatório para o projeto, mas permite que o processo possa ser acompanhado tendo em vista que o programa é para rodar com headless True
-=======
-## Observabilidade no projeto
-Com os passos acima a aplicação já pode ser executada seja manualmente ou através de um agendador de tarefas, porém como o processo é para funcionar de forma automática adicionei uma forma de relatar automaticamente o resultado final do programa através dos logs. Através do Telegram integrei o código para reportar ao final de cada disparo o que ocorreu no processo e se foi possível renovar as credenciais ou não.
->>>>>>> 63582f5e76c911f91b867240cdd4e619340f04d4
+Ao final de cada execução o programa dispara um log de aviso para reportar se o programa rodou por completo, quebrou no meio do caminho ou se encontrou alguma barreira que resultou em erro. Ese disparo é feito com a integração com o bot do telegram. Não é um passo orbigatório para o projeto, mas permite que o processo possa ser acompanhado tendo em vista que o programa é para rodar com headless True e agendador de tarefas.
