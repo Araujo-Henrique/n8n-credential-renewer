@@ -6,3 +6,16 @@ venv
 
 #Credenciais n8n
 .env
+
+# Cache do Python
+__pycache__/
+*.pyc
+
+# Logs de execução
+logs/
+
+# Configurações locais de IDE
+.vscode/
+
+# Lixo do Windows Explorer
+Thumbs.db

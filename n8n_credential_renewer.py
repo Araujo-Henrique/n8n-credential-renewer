@@ -3,6 +3,7 @@ import time
 import os
 import logging
 import traceback
+from pathlib import Path
 
 from notifier import send_status_message
 
@@ -15,11 +16,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+BASE_DIR = Path(__file__).resolve().parent
+LOGS_DIR = BASE_DIR / "logs"
+LOGS_DIR.mkdir(exist_ok=True)
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
-        logging.FileHandler("n8n_credential_renewer.log", encoding="utf-8"),
+        logging.FileHandler(
+            LOGS_DIR / "n8n_credential_renewer.log", encoding="utf-8"
+        ),
         logging.StreamHandler(),
     ],
 )
@@ -31,6 +38,7 @@ PROFILE = os.getenv("PROFILE")
 LOGIN_NAME = os.getenv("LOGIN_NAME")
 DOMINIO = os.getenv("DOMINIO")
 GMAIL_CREDENTIAL_N8N = os.getenv("GMAIL_CREDENTIAL_N8N")
+
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
