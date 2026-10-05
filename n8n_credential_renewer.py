@@ -56,7 +56,7 @@ if not all([N8N_URL, N8N_USER, N8N_PASSWORD, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_I
 subprocess.Popen([
     CHROME,
     "--remote-debugging-port=9222",
-    #"headless=new",
+    #"--headless=new",
     f"--user-data-dir={PROFILE}"
 ])
 
